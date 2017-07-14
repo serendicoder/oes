@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col s2"></div>
+    <div class="card-panel z-depth-4 col s8">
+        <div class="row">
+            <div class="col s1"></div>
+            <div class="col s10">
+                <form name="form" class="container" ng-submit="register_new_user()">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>                    
+                            <input id="name" type="text" class="validate" ng-model="user_name">
+                            <label for="name">Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="input-field col m12 s12">
+                                <i class="material-icons prefix">email</i>
+                                <input id="email" type="email" class="validate" ng-model="user_email">
+                                <label for="email" data-error="Invalid Email" data-success="Valid Email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col m12 s12">
+                                <i class="material-icons prefix">vpn_key</i>
+                                <input id="password" type="password" class="validate" ng-model="user_password">
+                                <label for="password">Password</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Select A Role</label>
+                        <select ng-model="user_role" name="name" class="browser-default">
+                            <option value="" disabled selected>Roles</option>
+                            <option value="examinee">Examinee</option>
+                            <option value="examiner">Examiner</option>
+                        </select>               
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="center-align">
+                            <button class="btn waves-effect waves-light col m12 s12" type="submit" name="action">Create new account
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col s1"></div>
+        </div>
+    </div>
+    <div class="col s2"></div>
+</div>

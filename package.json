@@ -1,0 +1,29 @@
+{
+  "name": "oes",
+  "version": "1.0.0",
+  "description": "Online Examination System ()\u001b[m ()\u001b[DWeb Tech bootcamp Mini Project)",
+  "main": "\u001b[D\u001bhtml)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u0016https://github.com/serendicoder/oes"
+  },
+  "keywords": [
+    "oes",
+    "adobe",
+    "angularjs"
+  ],
+  "author": "Amola Singh",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.5",
+    "angular-cookies": "^1.6.5",
+    "angular-mocks": "^1.6.5",
+    "angular-route": "^1.6.5",
+    "angularfire": "^2.3.0",
+    "jasmine-core": "^2.6.4",
+    "jquery": "^3.2.1"
+  }
+}

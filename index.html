@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+    <head>
+        <title>
+            OES
+        </title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Online Examination System">
+        <meta name="keywords" content="Adobe,HTML,CSS,JavaScript,AngularJS,Project">
+        <meta name="author" content="Amola Singh">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        <script></script>
+        <!--include angular dependencies-->
+        <script src="node_modules/jquery/dist/jquery.js"></script>
+        <script src="node_modules/angular/angular.js"></script>
+        <script src="node_modules/angular-cookies/angular-cookies.js"></script> 
+        <script src="node_modules/angular-mocks/angular-mocks.js"></script>
+        <script src="node_modules/angular-route/angular-route.js"></script>  
+        <!--include styles-->
+        <script src="lib/materialize/js/materialize.js"></script>
+        <link rel="stylesheet" type="text/css" href="lib/materialize/css/materialize.css">
+        <link rel="stylesheet" type="text/css" href="style/style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--include configs-->
+        <script src="app/config/mainCnfg.js"></script>
+        <!--include controllers-->
+        <script src="app/controller/mainCtrl.js"></script>
+        <!--include directives-->
+        <script src="app/directive/loginDrv.js"></script>
+        <!--include services-->
+        <script src="app/service/services.js"></script>
+        
+    </head>
+    <body ng-app="main_module">
+        <header></header>
+        <main>
+        <div ng-controller="mainCtrl" class="main container">
+            <div ng-view></div>
+        </div>
+        </main>
+        <footer class="page-footer teal lighten-2">
+            <div class="footer-copyright">
+                <div class="container">
+                © 2017 Adobe Systems
+                <a class="grey-text text-lighten-4 right" href="http://www.adobe.com">More Info</a>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<div class="row">  
+    <div class="col m3 s1"></div> 
+    <div class="col m6 s10">  
+        <div class="card-panel teal lighten-5 z-depth-4">
+            <div class="row">
+                <div class="card-panel teal lighten-2">
+                    <span class="center-align">
+                        <h5>Online Examination System</h5>
+                    </span>
+                </div>
+            </div>
+            <form name="form" ng-submit="loginSubmit()">
+                <div class="row">
+                    <form class="col m12 s12">
+                    <div class="row">
+                        <div class="input-field col m12 s12">
+                            <input id="email" type="email" class="validate" ng-model="user_email">
+                            <label for="email" data-error="Invalid Email" data-success="Valid Email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col m12 s12">
+                            <input id="password" type="password" class="validate" ng-model="user_password">
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m12 s12">
+                        <p>
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="center-align">
+                        <button class="btn waves-effect waves-light col m12 s12" type="submit" name="action">Sign in to your account
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+                <hr/>
+            </form>
+            <div class="row center-align">
+                <a ng-href="#/register">Sign Up!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col m3 s1"></div>
+</div>
