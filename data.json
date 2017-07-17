@@ -1,19 +1,69 @@
 {
-  "posts": [
+  "users": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "name": "Amola",
+      "email": "amola0302@gmail.com",
+      "password": "admin",
+      "role": "examiner"
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 2,
+      "name": "admin",
+      "email": "admin@adobe.com",
+      "password": "admin",
+      "role": "examiner"
+    },
+    {
+      "id": 3,
+      "name": "User One",
+      "email": "user@gmail.com",
+      "password": "admin",
+      "role": "examinee"
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "exam":
+    [
+      {
+        "id":0,
+        "examName":"",
+        "examDate":"",
+        "examTime":"",
+        "notificationDate":"",
+        "notificationTime":"",          
+        "questions":[
+          {
+            "id":0,
+            "q":"What is 2+2",
+            "options":[
+              {
+                "a":3,
+                "b":4,
+                "c":5,
+                "d":6
+              }],
+            "correct":"b",
+            "marks":4,
+            "type":"mcq"
+          },
+          {
+            "id":1,
+            "q":"What is 2+3",
+            "options":[
+              {
+                "a":3,
+                "b":4,
+                "c":5,
+                "d":6
+              }],
+            "correct":"c",
+            "marks":4,
+            "type":"mcq"
+          }
+        ],
+          
+        "maxMarks":4,
+        "duration":40
+      }
+    ]
 }
