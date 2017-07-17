@@ -94,15 +94,26 @@
 						{{currentQues.id}}.&nbsp;&nbsp;{{currentQues.q}}
 					</h5>
 					<form style="margin-top:100px">
-						<p ng-repeat="option in currentQues.options">
-							<input type="radio" name="ansgroup" id="option{{option.id}}" value="option.id" ng-click="respond(currentQues.id,option.id)" class="with-gap" required/>
+						<p ng-repeat="option in currentQues.options" ng-if="currentQuesType.mcq">
+							<input type="radio" name="ansgroup" id="option{{option.id}}" value="option.id" ng-click="respond(currentQues.id,option.id)" class="with-gap" required />
 							<label for="option{{option.id}}">{{option.op}}</label>
 						</p>
+						<p ng-repeat="option in currentQues.options" ng-if="currentQuesType.mmcq">
+							<input type="checkbox" name="ansgroup" id="option{{option.id}}" value="option.id" ng-model="option.sel" />
+							<label for="option{{option.id}}">{{option.op}}</label>
+						</p>
+						
+					    <p class="input-field col s6" ng-if="currentQuesType.fib">
+							<input value="" id="ttbox" ng-model="tempString" ng-change="respond(currentQues.id,tempString)" type="text" class="validate">
+							<label class="active" for="ttbox">Your Answer</label>
+					    </p>
+					    <p>{{setCurrQType()}}</p>
 					</form>
-					<div class="row" style="margin-top: 100px">
+					<div class="row" style="margin-top: 100px;clear:left">
 						<a class="waves-effect waves-light btn left" ng-click="prevQues()"><i class="material-icons left">skip_previous</i>Previous</a>
 						<a class="waves-effect waves-light btn right" ng-click="nextQues()"><i class="material-icons right">skip_next</i>Next</a>
 					</div>
+
 				</div>
 			</div>
 		</div>

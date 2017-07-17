@@ -10,6 +10,9 @@
 		$scope.all=[];//contains everything
 		$scope.response={};//contains ids:ans
 		$scope.currentQues={};//contains everything
+		$scope.currentQuesType=currentQuesType={'mcq':false,
+		'mmcq':false,'fib':false,'mtf':false};
+		$scope.tempString=tempString='';
 		$scope.selQues={"available":[],//contains ids and ques
 						"sel":[]};
 		$scope.allottedTime=allottedTime=0;
@@ -18,6 +21,38 @@
 			$scope.getQuestions();
 
 		};
+
+		$scope.setCurrQType=function(){
+			var ty=$scope.currentQues.type;
+			for(const key of Object.keys(currentQuesType)){
+				if(key==ty){
+					currentQuesType[key]=true;
+					if(key=='mmcq'){
+						let tempAns=[];
+						$scope.currentQues.options.forEach((c)=>{
+							if(c.sel)tempAns.push(c.id)
+						});
+						$scope.respond($scope.currentQues.id,tempAns);
+
+					}
+					// else if(key=='fib'){
+					// 	$scope.respond($scope.currentQues.id,tempString);
+					// 	console.log(tempString);
+					// }
+					else if(key=='mtf'){
+						let tempAns=[];
+						$scope.currentQues.options.forEach((c)=>{
+							let y={};y.id=c.id;y.match='';tempAns.push(y);
+						});
+						
+					}
+				}
+				else{
+					currentQuesType[key]=false;
+				}
+			}
+			//console.log($scope.currentQuesType);
+		}
 
 		$scope.getQuestions=function(){
 			//console.log('hi');
@@ -34,6 +69,7 @@
 				$scope.currentQues=$scope.all.filter(function(obj){
 					return obj.id==1;
 				})[0];
+				$scope.setCurrQType();
 				$scope.selQues.available=$scope.unans;
 				$(document).ready(function() {
 					$('select').material_select();
@@ -46,6 +82,12 @@
 
 
 		};
+
+	  //   $scope.$watch('currentQues.options|filter:{selected:true}', function (nv) {
+			// var ar=[];
+			// nv.forEach((c)=>ar.push(c.id));
+			// $scope.respond(currentQues.id,ar)
+	  //   }, true);
 
 		$scope.respond=function(quesId,resp){
 			$scope.response[quesId]=resp;
@@ -60,7 +102,7 @@
 				y["q"]=obj.q;
 				return y;
 			});
-			console.log($scope.ans);
+			//console.log($scope.ans);
 			var idx=-1;
 			$scope.unans.forEach(function(c,index){
 				if(c.id===quesId){
@@ -103,10 +145,14 @@
 
 		}
 
+
+
 		$scope.goToQues=function(qno){
 			$scope.currentQues=$scope.all.filter(function(obj){
 				return obj.id==qno;
 			})[0];
+			$scope.setCurrQType();
+
 		};
 
 		$scope.nextQues=function(){
@@ -115,6 +161,7 @@
 				$scope.currentQues=$scope.all.filter(function(obj){
 					return obj.id==(idx+1);
 				})[0];
+				$scope.setCurrQType();
 			}
 			//console.log($scope.currentQues);
 		}
@@ -126,6 +173,8 @@
 				$scope.currentQues=$scope.all.filter(function(obj){
 					return obj.id==(idx-1);
 				})[0];
+
+				$scope.setCurrQType();
 			}
 		};
 

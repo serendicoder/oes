@@ -14,14 +14,14 @@
 						"q":"What is 2+2?",
 						"options":[
 							
-								{"id":"a","op":3},
-								{"id":"b","op":4},
-								{"id":"c","op":5},
-								{"id":"d","op":6}
+								{"id":"a","op":3,"sel":false},
+								{"id":"b","op":4,"sel":false},
+								{"id":"c","op":5,"sel":false},
+								{"id":"d","op":6,"sel":false}
 							],
 						"correct":"b",
 						"marks":4,
-						"type":"mcq"
+						"type":"mmcq"
 					},
 					{
 						"id":2,
@@ -36,6 +36,13 @@
 						"correct":"c",
 						"marks":4,
 						"type":"mcq"
+					},
+					{
+						"id":3,
+						"q":"What is 2*3?",
+						"correct":"6",
+						"marks":4,
+						"type":"fib"
 					}
 				],
 					
