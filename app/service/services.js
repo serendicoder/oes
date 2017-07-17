@@ -1,3 +1,3 @@
 (function() {
-    angular.module("service_module", []);
+    angular.module("service_module",[]);
 })();

@@ -1,0 +1,46 @@
+{	
+	"exam":
+		[
+			{
+				"id":0,
+				"examName":"",
+				"examDate":"",
+				"examTime":"",
+				"notificationDate":"",
+				"notificationTime":"",					
+				"questions":[
+					{
+						"id":1,
+						"q":"What is 2+2?",
+						"options":[
+							
+								{"id":"a","op":3},
+								{"id":"b","op":4},
+								{"id":"c","op":5},
+								{"id":"d","op":6}
+							],
+						"correct":"b",
+						"marks":4,
+						"type":"mcq"
+					},
+					{
+						"id":2,
+						"q":"What is 2+3?",
+						"options":[
+							
+								{"id":"a","op":3},
+								{"id":"b","op":4},
+								{"id":"c","op":5},
+								{"id":"d","op":6}
+							],
+						"correct":"c",
+						"marks":4,
+						"type":"mcq"
+					}
+				],
+					
+				"maxMarks":4,
+				"duration":40
+			}
+		]
+}
