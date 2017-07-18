@@ -1,8 +1,9 @@
 (function(){
 
 	var app=angular.module("student_module",["service_module" ]);
-	app.controller("StudentExamController",function($scope,$rootScope,QuesService){
+	app.controller("StudentExamController",function($scope,$rootScope,QuesService,$http){
 		//var user=$rootScope.user;
+		$scope.userId=userId=0;
 		$scope.examName="JAVA MODULE";
 		$scope.examId=examId=0;
 		$scope.ans=[];//conatins ids and q
@@ -124,10 +125,10 @@
 						let y={};
 						y.id=quesId;
 						y.q=$scope.currentQues.q;
-						console.log(y);
+						//console.log(y);
 						$scope.ans.push(y);
 					}
-					console.log($scope.ans);
+					//console.log($scope.ans);
 					var idx=-1;
 					$scope.unans.forEach(function(c,index){if(c.id==quesId)idx=index;});
 					if(idx!=-1)$scope.unans.splice(idx,1);
@@ -187,10 +188,10 @@
 						let y={};
 						y.id=quesId;
 						y.q=$scope.currentQues.q;
-						console.log(y);
+						//console.log(y);
 						$scope.ans.push(y);
 					}
-					console.log($scope.ans);
+					//console.log($scope.ans);
 					var idx=-1;
 					$scope.unans.forEach(function(c,index){if(c.id==quesId)idx=index;});
 					if(idx!=-1)$scope.unans.splice(idx,1);
@@ -272,7 +273,20 @@
 		};
 
 		$scope.submitExam=function(){
+			QuesService.submitResponse($scope.response,userId,examId).then(function(result){
+			var obj=result.data;
+			console.log(obj);
+			obj.examsEligible.map(function(c){
+				if(c.id===examId){
+					let y=c;
+					y.response=$scope.response;
+					return y;
+				}
+			});
+			$http.put("http://localhost:3000/users/"+userId,obj);
 			alert('Exam Finished');
+			});
+
 		}
 
 
@@ -318,7 +332,7 @@
 		   			interval:function(){
 		   				var time=this.factory.getTime().time;
 		   				if(!time)
-		   					alert('fin');
+		   					$scope.submitExam();
 		   			}
 		   		},
 		   		autoStart:false,
