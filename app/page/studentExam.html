@@ -77,7 +77,7 @@
 								</div>
 								<div class="row" style="margin-top: 200px">
 									<div class="collection">
-										<a href='#!' class="collection-item" ng-repeat="item in selQues.sel" ng-click="goToQues(item.id)">{{item.id}}.&nbsp;&nbsp;{{item.q}}</a>
+										<a class="collection-item" ng-repeat="item in selQues.sel" ng-click="goToQues(item.id)">{{item.id}}.&nbsp;&nbsp;{{item.q}}</a>
 									</div>
 								</div>
 						</div>
@@ -95,19 +95,19 @@
 					</h5>
 					<form style="margin-top:100px">
 						<p ng-repeat="option in currentQues.options" ng-if="currentQuesType.mcq">
-							<input type="radio" name="ansgroup" id="option{{option.id}}" value="option.id" ng-click="respond(currentQues.id,option.id)" class="with-gap" required />
+							<input type="radio" name="ansgroup" ng-model="option.sel" id="option{{option.id}}" value="option.id" ng-click="respond(currentQues.id,option.id)" class="with-gap" required ng-model="tempMCQ" />
 							<label for="option{{option.id}}">{{option.op}}</label>
 						</p>
 						<p ng-repeat="option in currentQues.options" ng-if="currentQuesType.mmcq">
-							<input type="checkbox" name="ansgroup" id="option{{option.id}}" value="option.id" ng-model="option.sel" />
+							<input type="checkbox" name="ansgroup" id="option{{option.id}}" value="option.id" ng-model="option.sel" ng-change="helperForMmcq()"/>
 							<label for="option{{option.id}}">{{option.op}}</label>
 						</p>
 						
 					    <p class="input-field col s6" ng-if="currentQuesType.fib">
-							<input value="" id="ttbox" ng-model="tempString" ng-change="respond(currentQues.id,tempString)" type="text" class="validate">
+							<input id="ttbox" ng-model="tempString" ng-change="respond(currentQues.id,tempString)" type="text" class="validate">
 							<label class="active" for="ttbox">Your Answer</label>
 					    </p>
-					    <p>{{setCurrQType()}}</p>
+					    <p><!-- {{tempString}} -->{{response}}</p>
 					</form>
 					<div class="row" style="margin-top: 100px;clear:left">
 						<a class="waves-effect waves-light btn left" ng-click="prevQues()"><i class="material-icons left">skip_previous</i>Previous</a>

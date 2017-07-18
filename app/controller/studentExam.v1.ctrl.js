@@ -1,6 +1,6 @@
 (function(){
 
-	var app=angular.module("student_module",["service_module"]);
+	var app=angular.module("student_module",["service_module" ]);
 	app.controller("StudentExamController",function($scope,$rootScope,QuesService){
 		//var user=$rootScope.user;
 		$scope.examName="JAVA MODULE";
@@ -12,7 +12,7 @@
 		$scope.currentQues={};//contains everything
 		$scope.currentQuesType=currentQuesType={'mcq':false,
 		'mmcq':false,'fib':false,'mtf':false};
-		$scope.tempString=tempString='';
+		$scope.tempString='';
 		$scope.selQues={"available":[],//contains ids and ques
 						"sel":[]};
 		$scope.allottedTime=allottedTime=0;
@@ -22,24 +22,32 @@
 
 		};
 
+		$scope.helperForMmcq =function(){
+			let tempAns=[];
+			$scope.currentQues.options.forEach((c)=>{
+				if(c.sel)tempAns.push(c.id);
+			});
+			$scope.respond($scope.currentQues.id,tempAns);
+		}
+
 		$scope.setCurrQType=function(){
 			var ty=$scope.currentQues.type;
 			for(const key of Object.keys(currentQuesType)){
 				if(key==ty){
 					currentQuesType[key]=true;
-					if(key=='mmcq'){
-						let tempAns=[];
-						$scope.currentQues.options.forEach((c)=>{
-							if(c.sel)tempAns.push(c.id)
-						});
-						$scope.respond($scope.currentQues.id,tempAns);
+					//if(key=='mmcq'){
+						// let tempAns=[];
+						// $scope.currentQues.options.forEach((c)=>{
+						// 	if(c.sel)tempAns.push(c.id)
+						// });
+						//$scope.respond($scope.currentQues.id,tempAns);
 
-					}
+					//}
 					// else if(key=='fib'){
 					// 	$scope.respond($scope.currentQues.id,tempString);
 					// 	console.log(tempString);
 					// }
-					else if(key=='mtf'){
+					if(key=='mtf'){
 						let tempAns=[];
 						$scope.currentQues.options.forEach((c)=>{
 							let y={};y.id=c.id;y.match='';tempAns.push(y);
@@ -90,29 +98,108 @@
 	  //   }, true);
 
 		$scope.respond=function(quesId,resp){
-			$scope.response[quesId]=resp;
-			//console.log($scope.response);
-			//ans---
-			//console.log(quesId);
-			$scope.ans=$scope.all.filter(function(obj){
-				return obj.id==parseInt(quesId);
-			}).map(function(obj){
-				let y={};
-				y["id"]=obj.id;
-				y["q"]=obj.q;
-				return y;
-			});
-			//console.log($scope.ans);
-			var idx=-1;
-			$scope.unans.forEach(function(c,index){
-				if(c.id===quesId){
-					idx=index;
-				}
-			});
-			if(idx!=-1){
+			switch($scope.currentQues.type){
+				case 'mmcq':
+				var idx=-1;
+				$scope.ans.forEach(function(c,index){
+					if(c.id===quesId){
+						idx=index;
+						//break;
+					}
+				});
+				if(resp.length==0){
 
-				$scope.unans.splice(idx,1);			
+					if(idx!=-1){
+						$scope.ans.splice(idx,1);
+						let y={};
+						y["id"]=$scope.currentQues.id;
+						y["q"]=$scope.currentQues.q;
+						$scope.unans.push(y);
+					}
+				}
+
+				else{
+					$scope.response[quesId]=resp;
+					if(idx==-1){
+						let y={};
+						y.id=quesId;
+						y.q=$scope.currentQues.q;
+						console.log(y);
+						$scope.ans.push(y);
+					}
+					console.log($scope.ans);
+					var idx=-1;
+					$scope.unans.forEach(function(c,index){if(c.id==quesId)idx=index;});
+					if(idx!=-1)$scope.unans.splice(idx,1);
+
+				}
+				break;
+				case 'mcq':
+				$scope.response[quesId]=resp;
+				var idx=-1;
+				$scope.unans.forEach(function(c,index){
+					if(c.id===quesId){
+						idx=index;
+						//break;
+					}
+				});
+				if(idx!=-1){
+					$scope.unans.splice(idx,1);
+					let y={};
+					y["id"]=$scope.currentQues.id;
+					y["q"]=$scope.currentQues.q;
+					$scope.ans.push(y);
+				}
+				break;
+				case 'fib':
+				$scope.tempString=resp;
+				 $(document).ready(function() {
+				    Materialize.updateTextFields();
+				  });
+				var idx=-1;
+				$scope.ans.forEach(function(c,index){
+					if(c.id===quesId){
+						idx=index;
+						//break;
+					}
+				});
+				$scope.response[quesId]=resp;
+
+				if(resp==''){
+					var idx=-1;
+					$scope.ans.forEach(function(c,index){
+						if(c.id===quesId){
+							idx=index;
+							//break;
+						}
+					});
+					if(idx!=-1){
+						$scope.ans.splice(idx,1);
+						let y={};
+						y["id"]=$scope.currentQues.id;
+						y["q"]=$scope.currentQues.q;
+						$scope.unans.push(y);
+					}
+				}
+
+				else{
+					if(idx==-1){
+						let y={};
+						y.id=quesId;
+						y.q=$scope.currentQues.q;
+						console.log(y);
+						$scope.ans.push(y);
+					}
+					console.log($scope.ans);
+					var idx=-1;
+					$scope.unans.forEach(function(c,index){if(c.id==quesId)idx=index;});
+					if(idx!=-1)$scope.unans.splice(idx,1);
+				}
+				break;
+
+
 			}
+
 			//console.log($scope.ans);
 			$(document).ready(function() {
 				$('select').material_select();
@@ -156,6 +243,9 @@
 		};
 
 		$scope.nextQues=function(){
+			$(document).ready(function() {
+				Materialize.updateTextFields();
+			});
 			var idx=$scope.currentQues.id;
 			if(idx<$scope.all.length){
 				$scope.currentQues=$scope.all.filter(function(obj){
@@ -167,6 +257,9 @@
 		}
 
 		$scope.prevQues=function(){
+			$(document).ready(function() {
+				Materialize.updateTextFields();
+			});
 			var idx=$scope.currentQues.id;
 			//console.log(idx);
 			if(idx>1){
