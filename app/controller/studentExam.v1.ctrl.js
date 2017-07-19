@@ -68,7 +68,7 @@
 			QuesService.getQuestions(examId).then(function(result){
 				allottedTime=result.data.duration*60;
 				$scope.all=result.data.questions;
-				console.log($scope.all);
+				//console.log($scope.all);
 				$scope.all.forEach(function(a){
 					if(a.type==='mmcq'){
 						a.options.map(function(obj){
@@ -284,19 +284,8 @@
 		};
 
 		$scope.submitExam=function(){
-			QuesService.submitResponse($scope.response,userId,examId).then(function(result){
-			var obj=result.data;
-			console.log(obj);
-			obj.examsEligible.map(function(c){
-				if(c.id===examId){
-					let y=c;
-					y.responses=$scope.response;
-					return y;
-				}
-			});
-			$http.put("http://localhost:3000/users/"+userId,obj);
-			alert('Exam Finished');
-			});
+			QuesService.calculateResult($scope.all,$scope.response,userId,examId);
+
 
 		}
 
