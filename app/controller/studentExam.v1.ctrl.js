@@ -68,6 +68,17 @@
 			QuesService.getQuestions(examId).then(function(result){
 				allottedTime=result.data.duration*60;
 				$scope.all=result.data.questions;
+				console.log($scope.all);
+				$scope.all.forEach(function(a){
+					if(a.type==='mmcq'){
+						a.options.map(function(obj){
+							let y=obj;
+							y.sel=false;
+							return y;
+						});
+					}
+				});
+
 				//console.log($scope.all);
 				$scope.unans=$scope.all.map(function(obj){
 					let y={};
@@ -279,7 +290,7 @@
 			obj.examsEligible.map(function(c){
 				if(c.id===examId){
 					let y=c;
-					y.response=$scope.response;
+					y.responses=$scope.response;
 					return y;
 				}
 			});

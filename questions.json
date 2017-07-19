@@ -6,7 +6,7 @@
 				[
 					{
 						"id":0,
-						"response":{}
+						"responses":{}
 					}
 				]
 			}
@@ -26,10 +26,10 @@
 						"q":"What is 2+2?",
 						"options":[
 							
-								{"id":"a","op":3,"sel":false},
-								{"id":"b","op":4,"sel":false},
-								{"id":"c","op":5,"sel":false},
-								{"id":"d","op":6,"sel":false}
+								{"id":"a","op":3},
+								{"id":"b","op":4},
+								{"id":"c","op":5},
+								{"id":"d","op":6}
 							],
 						"correct":"b",
 						"marks":4,
