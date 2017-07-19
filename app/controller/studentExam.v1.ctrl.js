@@ -34,7 +34,7 @@
 		$scope.setCurrQType=function(){
 			var ty=$scope.currentQues.type;
 			for(const key of Object.keys(currentQuesType)){
-				if(key==ty){
+				if(key===ty){
 					currentQuesType[key]=true;
 					//if(key=='mmcq'){
 						// let tempAns=[];
@@ -48,7 +48,7 @@
 					// 	$scope.respond($scope.currentQues.id,tempString);
 					// 	console.log(tempString);
 					// }
-					if(key=='mtf'){
+					if(key==='mtf'){
 						let tempAns=[];
 						$scope.currentQues.options.forEach((c)=>{
 							let y={};y.id=c.id;y.match='';tempAns.push(y);
@@ -76,7 +76,7 @@
 					return y;
 				});
 				$scope.currentQues=$scope.all.filter(function(obj){
-					return obj.id==1;
+					return obj.id===1;
 				})[0];
 				$scope.setCurrQType();
 				$scope.selQues.available=$scope.unans;
@@ -108,7 +108,7 @@
 						//break;
 					}
 				});
-				if(resp.length==0){
+				if(resp.length===0){
 
 					if(idx!=-1){
 						$scope.ans.splice(idx,1);
@@ -121,7 +121,7 @@
 
 				else{
 					$scope.response[quesId]=resp;
-					if(idx==-1){
+					if(idx===-1){
 						let y={};
 						y.id=quesId;
 						y.q=$scope.currentQues.q;
@@ -130,7 +130,7 @@
 					}
 					//console.log($scope.ans);
 					var idx=-1;
-					$scope.unans.forEach(function(c,index){if(c.id==quesId)idx=index;});
+					$scope.unans.forEach(function(c,index){if(c.id===quesId)idx=index;});
 					if(idx!=-1)$scope.unans.splice(idx,1);
 
 				}
@@ -166,7 +166,7 @@
 				});
 				$scope.response[quesId]=resp;
 
-				if(resp==''){
+				if(resp===''){
 					var idx=-1;
 					$scope.ans.forEach(function(c,index){
 						if(c.id===quesId){
@@ -184,7 +184,7 @@
 				}
 
 				else{
-					if(idx==-1){
+					if(idx===-1){
 						let y={};
 						y.id=quesId;
 						y.q=$scope.currentQues.q;
@@ -193,7 +193,7 @@
 					}
 					//console.log($scope.ans);
 					var idx=-1;
-					$scope.unans.forEach(function(c,index){if(c.id==quesId)idx=index;});
+					$scope.unans.forEach(function(c,index){if(c.id===quesId)idx=index;});
 					if(idx!=-1)$scope.unans.splice(idx,1);
 				}
 				break;
@@ -237,7 +237,7 @@
 
 		$scope.goToQues=function(qno){
 			$scope.currentQues=$scope.all.filter(function(obj){
-				return obj.id==qno;
+				return obj.id===qno;
 			})[0];
 			$scope.setCurrQType();
 
@@ -250,7 +250,7 @@
 			var idx=$scope.currentQues.id;
 			if(idx<$scope.all.length){
 				$scope.currentQues=$scope.all.filter(function(obj){
-					return obj.id==(idx+1);
+					return obj.id===(idx+1);
 				})[0];
 				$scope.setCurrQType();
 			}
@@ -265,7 +265,7 @@
 			//console.log(idx);
 			if(idx>1){
 				$scope.currentQues=$scope.all.filter(function(obj){
-					return obj.id==(idx-1);
+					return obj.id===(idx-1);
 				})[0];
 
 				$scope.setCurrQType();

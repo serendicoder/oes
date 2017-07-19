@@ -1,6 +1,6 @@
 {	"users":
 		[
-			{
+			{ 
 				"id":0,
 				"examsEligible":
 				[
@@ -59,7 +59,7 @@
 				],
 					
 				"maxMarks":4,
-				"duration":0.1
+				"duration":40
 			}
 		]
 }
